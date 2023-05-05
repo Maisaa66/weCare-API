@@ -53,6 +53,7 @@ class User {
 
   static getUserById = async (req, res, next) => {
     try {
+      console.log(req.params.id);
       const user = await userModel.findById(req.params.id);
       if (!user) {
         throw new Error("There is no user with this ID!");

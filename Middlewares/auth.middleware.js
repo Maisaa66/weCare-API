@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 class Auth {
   static verifyToken = (req, res, next) => {
     try {
+      console.log(req.cookies.jwt);
       const token = req.cookies.jwt;
       if (token) {
         jwt.verify(token, process.env.JWT_SEC, (err, userToken) => {
@@ -21,6 +22,7 @@ class Auth {
   };
 
   static verifyTokenAndAuthorization = (req, res, next) => {
+    console.log(req.params.id);
     this.verifyToken(req, res, () => {
       if (req.userToken.id === req.params.id || req.userToken.isAdmin) {
         next();
