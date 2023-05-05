@@ -5,13 +5,14 @@ class Auth {
     try {
       console.log("cookie: ", req.cookies.jwt)
       console.log("bearer: ", req.headers);
-      console.log("token", req.headers("authorization").replace("Bearer ", ""))
+      // console.log("token", req.headers("authorization").replace("Bearer ", ""))
       const authHeader = req.headers.authorization || req.headers.Authorization
 
       if (!authHeader?.startsWith('Bearer ')) {
           return res.status(401).json({ message: 'Unauthorized' })
       }
       const token = authHeader.split(' ')[1]
+      console.log("token: ", token)
       if (token) {
         jwt.verify(token, process.env.JWT_SEC, (err, userToken) => {
           if (err) {

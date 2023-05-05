@@ -53,7 +53,7 @@ class User {
 
   static getUserById = async (req, res, next) => {
     try {
-      console.log(req.params.id);
+      console.log("in user model, get user by id: ", req.params.id);
       const user = await userModel.findById(req.params.id);
       if (!user) {
         throw new Error("There is no user with this ID!");
@@ -123,6 +123,8 @@ class User {
           ...other,
         },
       });
+
+      console.log("in user model, get user: ", user);
     } catch (err) {
       res.status(404).json({
         status: "fail",
@@ -248,6 +250,7 @@ class User {
         message: "User Logged in successfully",
         cookie: userToken,
       });
+      console.log("in user model, login: ", user);
     } catch (err) {
       res.status(401).send(err.message);
     }
