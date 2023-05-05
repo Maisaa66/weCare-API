@@ -4,7 +4,7 @@ class Auth {
   static verifyToken = (req, res, next) => {
     try {
       console.log("cookie: ", req.cookies.jwt)
-      console.log("bearer: ", req.headers.authorization);
+      console.log("bearer: ", req.headers);
       console.log("token", req.header("Authorization").replace("Bearer ", ""))
       const authHeader = req.headers.authorization || req.headers.Authorization
 
