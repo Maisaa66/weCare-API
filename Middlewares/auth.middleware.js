@@ -3,8 +3,14 @@ const jwt = require("jsonwebtoken");
 class Auth {
   static verifyToken = (req, res, next) => {
     try {
-      console.log(req.cookies.jwt);
-      const token = req.cookies.jwt;
+      console.log(req.cookies.jwt)
+      console.log(req.headers.authorization);
+      const authHeader = req.headers.authorization || req.headers.Authorization
+
+      if (!authHeader?.startsWith('Bearer ')) {
+          return res.status(401).json({ message: 'Unauthorized' })
+      }
+      const token = authHeader.split(' ')[1]
       if (token) {
         jwt.verify(token, process.env.JWT_SEC, (err, userToken) => {
           if (err) {
