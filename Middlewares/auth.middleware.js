@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 class Auth {
   static verifyToken = (req, res, next) => {
     try {
-      console.log(req.cookies.jwt)
-      console.log(req.headers.authorization);
+      console.log("cookie: ", req.cookies.jwt)
+      console.log("bearer: ", req.headers.authorization);
       const authHeader = req.headers.authorization || req.headers.Authorization
 
       if (!authHeader?.startsWith('Bearer ')) {
@@ -28,7 +28,7 @@ class Auth {
   };
 
   static verifyTokenAndAuthorization = (req, res, next) => {
-    console.log(req.params.id);
+    console.log("req.params.id: ",req.params.id);
     this.verifyToken(req, res, () => {
       if (req.userToken.id === req.params.id || req.userToken.isAdmin) {
         next();
