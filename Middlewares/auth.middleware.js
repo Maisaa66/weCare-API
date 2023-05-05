@@ -5,7 +5,7 @@ class Auth {
     try {
       console.log("cookie: ", req.cookies.jwt)
       console.log("bearer: ", req.headers);
-      console.log("token", req.header("authorization").replace("Bearer ", ""))
+      console.log("token", req.headers("authorization").replace("Bearer ", ""))
       const authHeader = req.headers.authorization || req.headers.Authorization
 
       if (!authHeader?.startsWith('Bearer ')) {
