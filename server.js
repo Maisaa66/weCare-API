@@ -52,6 +52,9 @@ app.post("/upload", (req, res) => {
     return res.status(400).json({ msg: "No file uploaded" });
   }
 
+
+  console.log("req.files: ", req.files);
+  
   let pathsArray = [];
   const email = req.body.email;
   let oneStepBack = path.join(__dirname, "../");
