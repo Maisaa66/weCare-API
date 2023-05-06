@@ -58,6 +58,7 @@ app.post("/upload", (req, res) => {
   let pathsArray = [];
   const email = req.body.email;
   let oneStepBack = path.join(__dirname, "../");
+  console.log("oneStepBack: ", oneStepBack);
   fs.mkdirSync(`${oneStepBack}/clientside/public/uploads/${email.split("@")[0]}`, {
     recursive: true,
   });
