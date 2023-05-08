@@ -109,7 +109,7 @@ class ServiceProvider {
   static getProviders = async (req, res) => {
     try {
       const features = new APIFeatures(serviceProviderModel.find(), req.query);
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       features.filter().sort().limit();
       const providers = await features.query;
@@ -157,7 +157,7 @@ class ServiceProvider {
       if (!user) {
         throw new Error("There is no user with this ID!");
       }
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",

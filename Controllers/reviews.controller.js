@@ -4,7 +4,7 @@ class Reviews {
   static createReview = async (req, res) => {
     try {
       const review = await reviewModel.create(req.body);
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
@@ -33,7 +33,7 @@ class Reviews {
       if (!review) {
         throw new Error("There is no review with this ID!");
       }
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",

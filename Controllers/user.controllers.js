@@ -13,7 +13,7 @@ class User {
         (matched) => `$${matched}`
       );
       const users = await userModel.find(JSON.parse(queryStr));
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+      res.setHeader('Access-Control-Allow-Origin', 'https://wecare-pam6.onrender.com');
       res.setHeader('Access-Control-Allow-Credentials', 'true');
       res.status(200).json({
         status: "success",
@@ -58,9 +58,9 @@ class User {
       if (!user) {
         throw new Error("There is no user with this ID!");
       }
-      // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      // res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       // res.setHeader("Access-Control-Allow-Credentials", "true");
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
@@ -94,7 +94,7 @@ class User {
       if (!user) {
         throw new Error("There is no user with this ID!");
       }
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
@@ -163,7 +163,7 @@ class User {
   static deleteUserById = async (req, res) => {
     try {
       const user = await userModel.findByIdAndDelete(req.params.id);
-      // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+      // res.setHeader('Access-Control-Allow-Origin', 'https://wecare-pam6.onrender.com');
       // res.setHeader('Access-Control-Allow-Credentials', 'true');
       if (!user) {
         throw new Error("There is no user with this ID!");
