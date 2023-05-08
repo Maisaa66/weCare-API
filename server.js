@@ -59,13 +59,13 @@ app.post("/upload", (req, res) => {
   const email = req.body.email;
   let oneStepBack = path.join(__dirname, "../");
   console.log("oneStepBack: ", oneStepBack);
-  fs.mkdirSync(`${oneStepBack}/public/uploads/${email.split("@")[0]}`, {
+  fs.mkdirSync(`${oneStepBack}/uploads/${email.split("@")[0]}`, {
     recursive: true,
   });
   Object.values(req.files).forEach((file) => {
     pathsArray.push(`/uploads/${email.split("@")[0]}/${file.name}`);
     file.mv(
-      `${oneStepBack}/public/uploads/${email.split("@")[0]}/${file.name}`,
+      `${oneStepBack}/uploads/${email.split("@")[0]}/${file.name}`,
       (err) => {
         if (err) {
           console.error(err);
