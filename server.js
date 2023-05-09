@@ -9,7 +9,7 @@ const requestsRoutes = require("./Routes/requests.routes");
 const reviewsRoutes = require("./Routes/reviews.routes");
 const statsRoutes = require("./Routes/stats.routes");
 const cookieParser = require("cookie-parser");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 const { addTimeOfRequest } = require("./Middlewares/helpers.middleware");
 const path = require("path");
 const fs = require("fs");
@@ -41,6 +41,8 @@ mongoose
 app.use(express.json());
 // Middleware to parse cookie from request
 app.use(cookieParser());
+// Middleware to parse data-body from request
+app.use(bodyParser.json());
 app.use(addTimeOfRequest);
 //Routes
 app.use("/api/v1/users", usersRoutes);
