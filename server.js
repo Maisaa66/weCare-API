@@ -81,10 +81,8 @@ app.use("/api/v1/stats", statsRoutes);
 // });
 
 app.post('/upload', upload.array('files'), (req, res) => {
-  const uploadedFiles = req.files.map(file => {
-    return { path: path.join('uploads', file.filename) };
-  });
-  res.json({ files: uploadedFiles });
+  const uploadedFiles = req.files.map(file => path.join('uploads', file.filename));
+  res.json({ filePath: uploadedFiles });
 });
 
 app.use("/api/v1/stripe", stripe);
