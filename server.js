@@ -88,7 +88,7 @@ app.use('/uploads', express.static('uploads'));
 
 app.post('/uploads', upload.any(), (req, res) => {
   console.log("req.files: ", req.files);
-  const uploadedFiles = req.files.map(file => path.join('uploads', file.fieldname));
+  const uploadedFiles = req.files.map(file => path.join('uploads', file.filename));
   res.json({ filePath: uploadedFiles });
 });
 
