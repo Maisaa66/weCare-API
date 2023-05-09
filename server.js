@@ -19,6 +19,7 @@ var bodyParser = require('body-parser')
 
 // bodyParser.json([options])
 const upload = multer({ dest: 'uploads/' });
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 dotenv.config();
 const app = express();
@@ -87,7 +88,7 @@ app.use("/api/v1/stats", statsRoutes);
 
 app.post('/upload', upload.any(), (req, res) => {
   console.log("req.files: ", req.files);
-  const uploadedFiles = req.files.map(file => path.join('uploads', file.filename));
+  const uploadedFiles = req.files.map(file => path.join('uploads', file.fieldname));
   res.json({ filePath: uploadedFiles });
 });
 
