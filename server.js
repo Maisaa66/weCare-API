@@ -85,7 +85,7 @@ app.use("/api/v1/stats", statsRoutes);
 //   res.json({ filePath: pathsArray });
 // });
 
-app.post('/upload', upload.array('files'), (req, res) => {
+app.post('/upload', upload.any(), (req, res) => {
   console.log("req.files: ", req.files);
   const uploadedFiles = req.files.map(file => path.join('uploads', file.filename));
   res.json({ filePath: uploadedFiles });
