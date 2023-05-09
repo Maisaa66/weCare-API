@@ -80,7 +80,7 @@ app.use("/api/v1/stats", statsRoutes);
 //   res.json({ filePath: pathsArray });
 // });
 
-app.post('/api/upload', upload.array('files'), (req, res) => {
+app.post('/upload', upload.array('files'), (req, res) => {
   const uploadedFiles = req.files.map(file => {
     return { path: path.join('uploads', file.filename) };
   });
