@@ -14,6 +14,8 @@ const { addTimeOfRequest } = require("./Middlewares/helpers.middleware");
 const path = require("path");
 const fs = require("fs");
 const stripe = require("./Routes/stripe.routes");
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 dotenv.config();
 const app = express();
@@ -47,35 +49,42 @@ app.use("/api/v1/stats", statsRoutes);
 // upload file route
 
 // Upload Endpoint
-app.post("/upload", (req, res) => {
-  if (req.files === null) {
-    return res.status(400).json({ msg: "No file uploaded" });
-  }
+// app.post("/upload", (req, res) => {
+//   if (req.files === null) {
+//     return res.status(400).json({ msg: "No file uploaded" });
+//   }
 
 
-  console.log("req.files: ", req.files);
+//   console.log("req.files: ", req.files);
   
-  let pathsArray = [];
-  const email = req.body.email;
-  let oneStepBack = path.join(__dirname, "../");
-  console.log("oneStepBack: ", oneStepBack);
-  fs.mkdirSync(`${oneStepBack}/uploads/${email.split("@")[0]}`, {
-    recursive: true,
-  });
-  Object.values(req.files).forEach((file) => {
-    pathsArray.push(`/uploads/${email.split("@")[0]}/${file.name}`);
-    file.mv(
-      `${oneStepBack}/uploads/${email.split("@")[0]}/${file.name}`,
-      (err) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send(err);
-        }
-      }
-    );
-  });
+//   let pathsArray = [];
+//   const email = req.body.email;
+//   let oneStepBack = path.join(__dirname, "../");
+//   console.log("oneStepBack: ", oneStepBack);
+//   fs.mkdirSync(`${oneStepBack}/clientside/public/uploads/${email.split("@")[0]}`, {
+//     recursive: true,
+//   });
+//   Object.values(req.files).forEach((file) => {
+//     pathsArray.push(`/uploads/${email.split("@")[0]}/${file.name}`);
+//     file.mv(
+//       `${oneStepBack}/clientside/public/uploads/${email.split("@")[0]}/${file.name}`,
+//       (err) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).send(err);
+//         }
+//       }
+//     );
+//   });
 
-  res.json({ filePath: pathsArray });
+//   res.json({ filePath: pathsArray });
+// });
+
+app.post('/api/upload', upload.array('files'), (req, res) => {
+  const uploadedFiles = req.files.map(file => {
+    return { path: path.join('uploads', file.filename) };
+  });
+  res.json({ files: uploadedFiles });
 });
 
 app.use("/api/v1/stripe", stripe);
