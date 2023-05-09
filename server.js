@@ -52,7 +52,7 @@ app.use("/api/v1/reviews", reviewsRoutes);
 app.use("/api/v1/stats", statsRoutes);
 
 // upload file route
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static('uploads'));
 
 // Upload Endpoint
 // app.post("/upload", (req, res) => {
@@ -92,14 +92,6 @@ app.post('/uploads', upload.any(), (req, res) => {
   res.json({ filePath: uploadedFiles });
 });
 
-app.get('/uploads/:imageName', (req, res) => {
-  // do a bunch of if statements to make sure the user is 
-  // authorized to view this image, then
-
-  const imageName = req.params.imageName
-  const readStream = fs.createReadStream(`uploads/${imageName}`)
-  readStream.pipe(res)
-});
 
 app.use("/api/v1/stripe", stripe);
 
