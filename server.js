@@ -86,10 +86,19 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //   res.json({ filePath: pathsArray });
 // });
 
-app.post('/upload', upload.any(), (req, res) => {
+app.post('/uploads', upload.any(), (req, res) => {
   console.log("req.files: ", req.files);
-  const uploadedFiles = req.files.map(file => path.join('uploads', file.fieldname));
+  const uploadedFiles = req.files.map(file => path.join('uploads', file.filename));
   res.json({ filePath: uploadedFiles });
+});
+
+app.get('/uploads/:imageName', (req, res) => {
+  // do a bunch of if statements to make sure the user is 
+  // authorized to view this image, then
+
+  const imageName = req.params.imageName
+  const readStream = fs.createReadStream(`uploads/${imageName}`)
+  readStream.pipe(res)
 });
 
 app.use("/api/v1/stripe", stripe);
