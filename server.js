@@ -15,6 +15,9 @@ const path = require("path");
 const fs = require("fs");
 const stripe = require("./Routes/stripe.routes");
 const multer = require('multer');
+var bodyParser = require('body-parser')
+
+bodyParser.json([options])
 const upload = multer({ dest: 'uploads/' });
 
 dotenv.config();
