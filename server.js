@@ -19,7 +19,6 @@ var bodyParser = require('body-parser')
 
 // bodyParser.json([options])
 const upload = multer({ dest: 'uploads/' });
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 dotenv.config();
 const app = express();
@@ -53,6 +52,7 @@ app.use("/api/v1/reviews", reviewsRoutes);
 app.use("/api/v1/stats", statsRoutes);
 
 // upload file route
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Upload Endpoint
 // app.post("/upload", (req, res) => {
