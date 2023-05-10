@@ -24,7 +24,7 @@ dotenv.config();
 const app = express();
 app.use(
   cors({
-    origin: ["https://wecare-pam6.onrender.com","https://nourhankg.github.io"],
+    origin: "https://wecare-pam6.onrender.com",
     credentials: true,
   })
 );

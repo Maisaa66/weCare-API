@@ -14,7 +14,6 @@ class User {
       );
       const users = await userModel.find(JSON.parse(queryStr));
       res.setHeader('Access-Control-Allow-Origin', 'https://wecare-pam6.onrender.com');
-      res.setHeader("Access-Control-Allow-Origin", "https://nourhankg.github.io/");
       res.setHeader('Access-Control-Allow-Credentials', 'true');
       res.status(200).json({
         status: "success",
@@ -62,7 +61,6 @@ class User {
       // res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
       // res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
-      res.setHeader("Access-Control-Allow-Origin", "https://nourhankg.github.io/");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
@@ -97,7 +95,6 @@ class User {
         throw new Error("There is no user with this ID!");
       }
       res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
-      res.setHeader("Access-Control-Allow-Origin", "https://nourhankg.github.io/");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
