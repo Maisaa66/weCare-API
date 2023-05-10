@@ -5,6 +5,7 @@ class Requests {
     try {
       const request = await hireRequestModel.create(req.body);
       res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
+      res.setHeader("Access-Control-Allow-Origin", "https://nourhankg.github.io/");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
@@ -34,6 +35,7 @@ class Requests {
         throw new Error("There is no request with this ID!");
       }
       res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
+      res.setHeader("Access-Control-Allow-Origin", "https://nourhankg.github.io/");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
@@ -66,6 +68,7 @@ class Requests {
         throw new Error("There is no request with this ID!");
       }
       res.setHeader("Access-Control-Allow-Origin", "https://wecare-pam6.onrender.com");
+      res.setHeader("Access-Control-Allow-Origin", "https://nourhankg.github.io/");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Methods",
